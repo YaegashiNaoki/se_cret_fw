@@ -1,0 +1,40 @@
+
+/pca10040/s132/armgcc/_build
+
+
+
+# Created by https://www.gitignore.io/api/macos
+
+### macOS ###
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+*.emSession
+pca10040/s132/ses/Output
+pca10040/s132/ses/ble_app_ancs_c_pca10040_s132_Debug.jlink
+
+# End of https://www.gitignore.io/api/macos
+

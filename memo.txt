@@ -1,0 +1,28 @@
+
+/**
+ *  メモ
+ * 
+ * gap(gap_params)はプロファイル。カスタム可能な低レベル接続情報定義。
+ * （コネクション以前の接続定義）。
+ * コネクション(conn_params_init)はBluthtoothでコネクションを結ぶ時の
+ * パラメータ。
+ * 
+ * 
+ * jlinkexe -device NRF52 -speed 4000 -if SWD
+ * JLinkRTTClient (小文字でもok)
+ * 
+ * 
+ * 
+ * /
+
+ iOSの設定画面を経由しなくてもコネクションは可能。
+ ただ、鍵の共有をしていないので、自動接続はできない。毎回アプリでコネクション張るようにしなければいけない。
+
+ GDB 終了
+ http://www.geocities.jp/harddiskdive/gdb/gdb_194.html
+
+
+
+アドバタイジングで最初のサービスuuidを送信できて（どんなサービスなのか。コネクトしたあとは別）、それ用の128bitのuuidは定義済みなので内16bitだけ送信すればよく、
+Apple Notification Serviceはすでに定義済なので、(SIGにはない)0xF431(ANCS_UUID_SERVICE)とすればいい。
+コネクトされら後にUUIDが発行される。これはコネクションするごとに発行される（はず）。

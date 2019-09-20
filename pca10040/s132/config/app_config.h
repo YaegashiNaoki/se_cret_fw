@@ -1,0 +1,36 @@
+
+#define NRF_LOG_ENABLED 1
+#define NRF_LOG_BACKEND_RTT_ENABLED 1
+
+// 一応指定しておく。デフォルトは1になっているので。明示的にRTTを使う。
+#define NRF_LOG_BACKEND_UART_ENABLED 0
+
+#define CLOCK_CONFIG_LOG_ENABLED 0
+#define CLOCK_CONFIG_LOG_LEVEL 4
+#define COMMON_CONFIG_LOG_ENABLED 0
+#define COMMON_CONFIG_LOG_LEVEL 4
+
+#define NRF_LOG_DEFAULT_LEVEL 3
+#define NRF_LOG_FILTER 3
+
+#define BLE_NUS_ENABLED 1
+
+#define SECRET_LED_RED 18 // (Red LED)
+#define SECRET_LED_BLUE 20 // ( Blue LED)
+
+#define SECRET_VIBRATION_H 7 // 2.7v
+#define SECRET_VIBRATION_M 4 // 2.3v
+#define SECRET_VIBRATION_L 3 // 2.1v
+
+#define BUTTONS_NUMBER 1
+
+#define BUTTON_START   0x02
+#define BUTTON_1       0x02
+#define BUTTON_STOP    0x02
+#define BUTTON_PULL    NRF_GPIO_PIN_PULLUP
+
+#define BUTTONS_ACTIVE_STATE 1
+
+#define BUTTONS_LIST { }
+
+#define BSP_BUTTON_0   BUTTON_1

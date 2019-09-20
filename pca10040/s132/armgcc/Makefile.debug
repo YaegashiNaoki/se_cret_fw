@@ -1,0 +1,33 @@
+GDB	    := "$(GNU_INSTALL_ROOT)$(GNU_PREFIX)-gdb"
+
+ELF = $(OUTPUT_DIRECTORY)/$(TARGETS).out
+BIN = $(OUTPUT_DIRECTORY)/$(TARGETS).bin
+
+FLASH_START_ADDRESS = $(shell $(OBJDUMP) -h $(ELF) -j .text | grep .text | awk '{print $$4}')
+
+ifdef SEGGER_SERIAL
+JLINKEXE_OPTION = -SelectEmuBySn $(SEGGER_SERIAL)
+JLINKGDBSERVER_OPTION = -select USB=$(SEGGER_SERIAL)
+else
+GDB_PORT_NUMBER = 2331
+JLINK_OPTIONS =-device NRF52832_XXAA -if SWD -speed 4000
+JLINKGDBSERVER_OPTION =-device NRF52832_XXAA -if SWD -speed 4000
+endif
+
+MAKE_BUILD_FOLDER = mkdir -p $(OUTPUT_PATH)
+
+JLINK = -JLinkExe $(JLINK_OPTIONS) $(JLINKEXE_OPTION)
+JLINKGDBSERVER = JLinkGDBServer $(JLINK_OPTIONS) $(JLINKGDBSERVER_OPTION)
+
+SOFTDEVICE_OUTPUT = $(OUTPUT_PATH)$(notdir $(SOFTDEVICE))
+BOOTLOADER_OUTPUT = $(OUTPUT_PATH)$(notdir $(BOOTLOADER))
+
+startdebug: debug-gdbinit
+	$(JLINKGDBSERVER) -port $(GDB_PORT_NUMBER) &
+	sleep 1
+	$(GDB) $(ELF)
+
+debug-gdbinit:
+	printf "target remote localhost:$(GDB_PORT_NUMBER)\nmonitor reset\nbreak main\n" > .gdbinit
+
+.PHONY: startdebug
